@@ -1,4 +1,7 @@
-# Load required libraries
+#############################
+## Load required libraries ##
+#############################
+
 library(DESeq2)
 library(ggplot2)
 library(data.table)
