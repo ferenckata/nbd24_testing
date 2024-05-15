@@ -6,6 +6,12 @@ library(DESeq2)
 library(ggplot2)
 library(data.table)
 
+############################
+## Sourcing the functions ##
+############################
+
+source("group_B_functions.R")
+
 #################################
 ## Defining output directories ##
 #################################
