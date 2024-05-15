@@ -10,7 +10,7 @@ library(data.table)
 ## Sourcing the functions ##
 ############################
 
-source("group_B_functions.R")
+source("r_code/group_B_functions.R")
 
 #################################
 ## Defining output directories ##
@@ -25,7 +25,6 @@ create_directory(DATA_DIR)
 RESULTS_DIR <- file.path(OUTPUT_DIR, "results")
 create_directory(RESULTS_DIR)
 
-
 #########################
 ## Simulating the data ##
 #########################
@@ -36,17 +35,11 @@ METADATA_PATH  <- file.path(DATA_DIR, "metadata.tsv")
 ## DATA 1
 ## Create example RNA-seq count matrix and export it
 
-set.seed(567)
-num_genes <- 1000
-num_samples <- 10
-
-count_matrix <- matrix(data = round(runif(num_genes * num_samples, min = 0, max = 100)), nrow = num_genes)
-colnames(count_matrix) <- paste0("Sample", 1:num_samples)
-rownames(count_matrix) <- paste0("Gene", 1:num_genes)
-
-save(
-    count_matrix,
-    file = COUNT_MAT_PATH)
+generate_counts(
+    output_path = COUNT_MAT_PATH,
+    number_of_genes = 1000,
+    number_of_samples = 10,
+    seed = 567)
 
 ## DATA 2
 ## Create metadata and export it
