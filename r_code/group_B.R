@@ -32,28 +32,24 @@ create_directory(RESULTS_DIR)
 COUNT_MAT_PATH <- file.path(DATA_DIR, "count_matrix.RData")
 METADATA_PATH  <- file.path(DATA_DIR, "metadata.tsv")
 
+counts_metadata_list <- generate_counts_with_metadata(
+    counts_output_path = COUNT_MAT_PATH,
+    number_of_genes = 1000,
+    number_of_samples = 10,
+    seed = 567,
+    condition_vector = c("Control", "Treatment"),
+    metadata_output_path = METADATA_PATH
+)
+
 ## DATA 1
 ## Create example RNA-seq count matrix and export it
 
-generate_counts(
-    output_path = COUNT_MAT_PATH,
-    number_of_genes = 1000,
-    number_of_samples = 10,
-    seed = 567)
+count_matrix <- counts_metadata_list$counts
 
 ## DATA 2
 ## Create metadata and export it
 
-metadata <- data.frame(
-    Sample = colnames(count_matrix),
-    Condition = sample(c("Control", "Treatment"), size = num_samples, replace = TRUE),
-    stringsAsFactors = FALSE)
-
-data.table::fwrite(
-    metadata,
-    file = METADATA_PATH,
-    sep = "\t",
-    col.names = TRUE)
+metadata <- counts_metadata_list$metadata
 
 ####################################
 ## Reading and checking the input ##
