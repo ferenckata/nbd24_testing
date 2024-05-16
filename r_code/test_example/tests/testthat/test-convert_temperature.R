@@ -1,3 +1,5 @@
+## testthat::test_dir("./r_code/test_example/tests/testthat")
+
 ##############################
 ## Load or install packages ##
 ##############################
