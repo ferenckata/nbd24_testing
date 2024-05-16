@@ -26,10 +26,14 @@ test_that(desc = "F_to_C correctly converts Fahrenheit to Celsius", code = {
     temp_C <- F_to_C(50); # Runs the function
     
     # Test that the result is the correct value
-    expect_that( object = temp_C, condition = equals(10) );
+    expect_that(
+        object = temp_C,
+        condition = equals(10));
     
     # Test that the result is numeric
-    expect_that( object = is.numeric(temp_C), condition = equals(TRUE) );
+    expect_that(
+        object = is.numeric(temp_C),
+        condition = equals(TRUE));
 })
 
 test_that(desc = "C_to_F correctly converts Celsius to Fahrenheit", code = {
@@ -37,10 +41,14 @@ test_that(desc = "C_to_F correctly converts Celsius to Fahrenheit", code = {
     temp_F <- C_to_F(10);
     
     # Test that the result is the correct value
-    expect_that( object = temp_F, condition = equals(50) );
+    expect_that(
+        object = temp_F,
+        condition = equals(50));
     
     # Test that the result is numeric
-    expect_that( object = is.numeric(temp_F), condition = equals(TRUE) );
+    expect_that(
+        object = is.numeric(temp_F),
+        condition = equals(TRUE));
 })
 
 ## Failed test example:
@@ -50,6 +58,8 @@ test_that(desc = "F_to_C goes wrong", code = {
     temp_F <- F_to_C(50);
 
     skip('skip')
-    expect_that( object = temp_F, condition = equals(2) );
+    expect_that(
+        object = temp_F,
+        condition = equals(2));
 })
 
