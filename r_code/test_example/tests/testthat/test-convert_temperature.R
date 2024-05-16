@@ -17,6 +17,8 @@ source(file.path(here::here(), "r_code/test_example/R/convert_temperature.R"))
 ## Running tests ##
 ###################
 
+## Tests and functions taken from https://stirlingcodingclub.github.io/code_testing/testing_notes.html
+
 ## Testing each function with two tests each:
 
 test_that(desc = "F_to_C correctly converts Fahrenheit to Celsius", code = {
@@ -43,7 +45,7 @@ test_that(desc = "C_to_F correctly converts Celsius to Fahrenheit", code = {
 
 ## Failed test example:
 
-test_that(desc = "F_to_C wrong expectation", code = {
+test_that(desc = "F_to_C goes wrong", code = {
     
     temp_F <- F_to_C(50);
 

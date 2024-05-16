@@ -1,3 +1,5 @@
+## Functions taken from: https://stirlingcodingclub.github.io/code_testing/testing_notes.html
+
 #' Converting temperature in Farenheit to Celsius
 #' 
 #' @param F_temp Temperature in Farenheit
