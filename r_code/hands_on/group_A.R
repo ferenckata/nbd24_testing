@@ -6,61 +6,14 @@ library(DESeq2)
 library(ggplot2)
 library(data.table)
 
-#################################
-## Defining output directories ##
-#################################
-
-## Main output directory:
-OUTPUT_DIR <- file.path("results")
-dir.create(OUTPUT_DIR, recursive = TRUE, showWarnings = FALSE)
-
-## Generated data:
-DATA_DIR <- file.path(OUTPUT_DIR, "data")
-dir.create(DATA_DIR, recursive = TRUE, showWarnings = FALSE)
-
-## Produced results:
-RESULTS_DIR <- file.path(OUTPUT_DIR, "results")
-dir.create(RESULTS_DIR, recursive = TRUE, showWarnings = FALSE)
-
-#########################
-## Simulating the data ##
-#########################
-
-COUNT_MAT_PATH <- file.path(DATA_DIR, "count_matrix.RData")
-METADATA_PATH  <- file.path(DATA_DIR, "metadata.tsv")
-
-## DATA 1
-## Create example RNA-seq count matrix and export it
-
-set.seed(567)
-num_genes <- 1000
-num_samples <- 10
-
-count_matrix <- matrix(data = round(runif(num_genes * num_samples, min = 0, max = 100)), nrow = num_genes)
-colnames(count_matrix) <- paste0("Sample", 1:num_samples)
-rownames(count_matrix) <- paste0("Gene", 1:num_genes)
-
-save(
-    count_matrix,
-    file = COUNT_MAT_PATH)
-
-## DATA 2
-## Create metadata and export it
-
-metadata <- data.frame(
-    Sample = colnames(count_matrix),
-    Condition = sample(c("Control", "Treatment"), size = num_samples, replace = TRUE),
-    stringsAsFactors = FALSE)
-
-data.table::fwrite(
-    metadata,
-    file = METADATA_PATH,
-    sep = "\t",
-    col.names = TRUE)
-
 ####################################
 ## Reading and checking the input ##
 ####################################
+
+## Input data folder:
+DATA_DIR <- file.path("../data")
+COUNT_MAT_PATH <- file.path(DATA_DIR, "count_matrix.RData")
+METADATA_PATH  <- file.path(DATA_DIR, "metadata.tsv")
 
 ## Loading the count matrix:
 count_matrix <- get(load(COUNT_MAT_PATH))
@@ -133,6 +86,10 @@ volcano_plot <- ggplot(
 ###########################
 ## Exporting the results ##
 ###########################
+
+## Produced results:
+RESULTS_DIR <- file.path("../results")
+dir.create(RESULTS_DIR, recursive = TRUE, showWarnings = FALSE)
 
 PATH_TO_DGE_RES <- file.path(RESULTS_DIR, "DGE_results.tsv")
 PATH_TO_DGE_PLOT <- file.path(RESULTS_DIR, "DGE_results.pdf")
