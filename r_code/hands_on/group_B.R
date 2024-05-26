@@ -75,7 +75,7 @@ perform_de_analysis <- function(count_matrix, metadata){
 }
 
 save_degs <- function(deg_res, results_dir){
-    results <- as.data.frame(res)
+    results <- as.data.frame(deg_res)
     dge_res_path <- file.path(results_dir, "DGE_results.tsv")
     data.table::fwrite(
         results,
@@ -123,7 +123,7 @@ export_results <- function(results_dir, volcano_plot){
 RESULTS_DIR <- file.path("../results")
 
 ## Input data:
-DATA_DIR <- file.path("../data")
+DATA_DIR <- file.path("r_code/data")
 
 ## Input files:
 COUNT_MAT_PATH <- file.path(DATA_DIR, "count_matrix.RData")
