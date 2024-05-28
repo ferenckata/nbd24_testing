@@ -30,26 +30,12 @@ os.makedirs(DATA_DIR, exist_ok=True)
 RESULTS_DIR = os.path.join(OUTPUT_DIR, 'results')
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-#########################
-## Simulating the data ##
-#########################
-
-COUNT_MAT_PATH = os.path.join(DATA_DIR, 'count_matrix.pkl')
-METADATA_PATH = os.path.join(DATA_DIR, 'metadata.tsv')
-
-## Create example RNA-seq count matrix and metadata
-count_df,metadata = generate_counts_with_metadata(
-    COUNT_MAT_PATH,
-    METADATA_PATH,
-    number_of_genes=1000,
-    number_of_samples=10,
-    condition_vector=['Control', 'Treatment'],
-    seed=567,
-)
-
 ####################################
 ## Reading and checking the input ##
 ####################################
+
+COUNT_MAT_PATH = os.path.join(DATA_DIR, 'count_matrix.pkl')
+METADATA_PATH = os.path.join(DATA_DIR, 'metadata.tsv')
 
 ## Loading the count matrix:
 count_df = pd.read_pickle(COUNT_MAT_PATH)
@@ -67,9 +53,9 @@ check_counts(count_df)
 ## Impute missing values using average:
 count_df = process_counts(count_df, pseudocount=1, min_counts=10)
 
-#######################################################
-## Performming differential gene expression analysis ##
-#######################################################
+######################################################
+## Performing differential gene expression analysis ##
+######################################################
 
 ## Perform differential gene expression using PyDESeq2
 res = calculate_deg(count_df, metadata, design_factors='Condition')
