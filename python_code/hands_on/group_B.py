@@ -18,16 +18,12 @@ from group_B_functions import *
 ## Defining output directories ##
 #################################
 
-## Main output directory:
-OUTPUT_DIR = Path('results')
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
 ## Generated data:
-DATA_DIR = os.path.join(OUTPUT_DIR, 'data')
+DATA_DIR = Path('data')
 os.makedirs(DATA_DIR, exist_ok=True)
 
 ## Produced results:
-RESULTS_DIR = os.path.join(OUTPUT_DIR, 'results')
+RESULTS_DIR = Path('results')
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 ####################################
