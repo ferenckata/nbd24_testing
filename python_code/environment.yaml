@@ -1,4 +1,3 @@
-name: nbd2024
 channels:
   - defaults
 dependencies:
@@ -61,4 +60,3 @@ dependencies:
       - scikit-learn==1.4.2
       - scipy==1.13.0
       - threadpoolctl==3.5.0
-prefix: /home/ladislav/miniconda3/envs/nbd2024
